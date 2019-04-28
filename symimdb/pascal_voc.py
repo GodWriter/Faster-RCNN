@@ -42,7 +42,9 @@ class PascalVOC(IMDB):
         logger.info('%s num_images %d' % (self.name, self.num_images))
 
     def _load_gt_roidb(self):
+        # get the image index for each image
         image_index = self._load_image_index()
+        # through the index ,load the related xml
         gt_roidb = [self._load_annotation(index) for index in image_index]
         return gt_roidb
 
@@ -52,6 +54,7 @@ class PascalVOC(IMDB):
         return image_set_index
 
     def _load_annotation(self, index):
+        # get the source height, width, objs
         height, width, orig_objs = self._parse_voc_anno(self._image_anno_tmpl.format(index))
 
         if not self._config['use_diff']:
@@ -59,6 +62,7 @@ class PascalVOC(IMDB):
             objs = non_diff_objs
         else:
             objs = orig_objs
+        # get the number of objects
         num_objs = len(objs)
 
         boxes = np.zeros((num_objs, 4), dtype=np.uint16)
