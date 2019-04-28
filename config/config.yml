@@ -1,0 +1,29 @@
+## Basic configuration
+retraining: False
+training: True # If the model is train, this argument should be true, else False
+image_path: data/train2014 # Path of the image data
+dataSet: data/tf-record # Path of the tf-record dataSet
+vgg_path: pretrained/imagenet-vgg-verydeep-19.mat # Path of the trained vgg19 model
+style_image_path: data/style-image/thunder.jpg # Path of the style image
+tfrecord_num: 80000
+samples_per_file: 800
+
+## The size, the iter number to run...
+output_height: 224 # The height of the unprocessed image after processed
+output_width: 224 # The width of the unprocessed image after processed
+batch_size: 4 # Batch size of the data
+num_epochs: 1 # Number of the train epochs
+learning_rate: 1.0e-3 # Learning rate for the optimizer
+
+## Weight of the loss
+content_weight: 1 # Weight of content loss when computing the total loss
+style_weight: 10 # Weight of style loss when computing the total loss
+tv_weight: 1 # Weight of total variation loss when computing the total loss
+affine_weight: 100 # Weight of affine loss when computing the total loss
+cycle_weight: 10.0
+
+## Save configure
+log_path: log # Path to save the log
+model_path: model # Path to save the model
+save_epoch: 2000 # The frequency to save the model
+save_summary: 10 # The frequency to save the summary

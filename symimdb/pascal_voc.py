@@ -14,7 +14,7 @@ class PascalVOC(IMDB):
                'motorbike', 'person', 'pottedplant',
                'sheep', 'sofa', 'train', 'tvmonitor']
 
-    def __init(self, image_set, root_path, devkit_path):
+    def __init__(self, image_set, root_path, devkit_path):
         super(PascalVOC, self).__init__('voc_' + image_set, root_path)
 
         year, image_set = image_set.split('_')
@@ -26,6 +26,10 @@ class PascalVOC(IMDB):
         self._image_file_tmpl = os.path.join(devkit_path, 'VOC' + year, 'JPEGImages', '{}.jpg')
         self._image_anno_tmpl = os.path.join(devkit_path, 'VOC' + year, 'Annotations', '{}.xml')
 
+        # print info
+        logger.info('class_to_ind: %s' % self._class_to_ind)
+        logger.info('class_to_ind: %s' % self._image_index_file)
+
         # results
         result_folder = os.path.join(devkit_path, 'results', 'VOC' + year, 'Main')
         if not os.path.exists(result_folder):
@@ -33,7 +37,8 @@ class PascalVOC(IMDB):
         self._result_file_tmpl = os.path.join(result_folder, 'comp4_det_' + image_set + '_{}.txt')
 
         # get roidb
-        self._roidb = self._get_cached('roidb', self._load_gt_roidb)
+        # self._roidb = self._get_cached('roidb', self._load_gt_roidb)
+        self._roidb = self._load_gt_roidb()
         logger.info('%s num_images %d' % (self.name, self.num_images))
 
     def _load_gt_roidb(self):
