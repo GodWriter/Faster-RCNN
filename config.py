@@ -16,8 +16,6 @@ def parse_args():
                         help='If the model is train, this argument should be true, else False')
     parser.add_argument('--GPU', type=str, default='0',
                         help='GPU used to train the model')
-    parser.add_argument('--imageset', type=str, default='',
-                        help='imageset splits')
     parser.add_argument('--config', type=str, default='config/config.yml',
                         help='Path of config file for testing')
 

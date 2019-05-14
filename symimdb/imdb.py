@@ -56,7 +56,7 @@ class IMDB(object):
             assert (boxes[:, 2] >= boxes[:, 0]).all()
             roi_rec_flipped = roi_rec.copy()
             roi_rec_flipped['boxes'] = boxes
-            roi_rec_flipped['flipped'] = True
+            roi_rec_flipped['flipped'] = 1
             roidb_flipped.append(roi_rec_flipped)
         self._roidb.extend(roidb_flipped)
 

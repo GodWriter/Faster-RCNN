@@ -84,7 +84,7 @@ class PascalVOC(IMDB):
                    'width': width,
                    'boxes': boxes,
                    'gt_classes': gt_classes,
-                   'flipped': False}
+                   'flipped': 0}
 
         return roi_rec
 
