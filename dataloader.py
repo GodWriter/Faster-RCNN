@@ -1,10 +1,8 @@
 import os
 import sys
-import numpy as np
 import tensorflow as tf
 
 from symimdb.pascal_voc import PascalVOC
-from symnet.logger import logger
 
 
 class Dataset(object):
@@ -111,10 +109,6 @@ def bytes_feature(value):
 def add_to_tfrecord(roi, tfrecord_writer):
     shape = [roi['height'], roi['width'], 3]
     image_data = tf.gfile.GFile(roi['image'], 'rb').read()
-
-    # xmin, ymin, xmax, ymax = [], [], [], []
-    # for box in roi['boxes']:
-    #     [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], box)]
 
     image_format = b'JPEG'
     example = tf.train.Example(features=tf.train.Features(feature={

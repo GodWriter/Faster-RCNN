@@ -3,8 +3,8 @@ retraining: False
 training: True # If the model is train, this argument should be true, else False
 imageset: 2012_trainval
 tfrecord_file: 'data/tf-record'
-tfrecord_num: 10
-samples_per_file: 10
+tfrecord_num: 20000
+samples_per_file: 1000
 
 ## The size, the iter number to run...
 batch_size: 1 # Batch size of the data

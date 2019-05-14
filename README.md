@@ -43,3 +43,41 @@
   * 根据条件判断调用哪个功能
   * 我们主要测试test_dataset()
 
+
+
+### 2019/5/14
+
+> dataloader完善
+
+* create_dataset()
+  * 根据config.py文件中指定的tfrecord配置，生成tfrecord文件
+  * add_to_tfrecord()是创建tfrecord的核心函数，**保存bbox的特别需要注意**
+    * bbox是变长，在VOC2018,2019中，仅仅只有一个bbox，但是在2012中，一张图片会有多个bbox
+    * 由于是变长，需要转成byte形式，此外需要额外记录它的形装，方便之后恢复
+* load_dataset()
+  * 加载创建好的数据集
+  * parse_function是关键
+    * 需要将bbox根据所记录的形状恢复，但注意**tf.decode_raw（）中的数据类型**很重要，保存的时候是什么类型，读取出来就要是什么类型，否则会报错
+    * 详情可看我的博客：<https://blog.csdn.net/GodWriter/article/details/90200179>
+* test_dataset()
+  * 即测试能够从tfrecord中读取信息
+
+
+
+> 运行指令
+
+* 首先根据自己的需要修改config/config.yml文件中的配置
+
+* 运行指令创建tf-record
+
+  ```bash
+  python main.py --module create_dataset
+  ```
+
+* 运行指令测试数据集
+
+  ```bash
+  python main.py --module test_dataset
+  ```
+
+  
