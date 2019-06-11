@@ -78,7 +78,7 @@ class PascalVOC(IMDB):
             gt_classes[ix] = cls
 
         roi_rec = {'index': index,
-                   'objs': orig_objs,
+                   'objs': objs,
                    'image': self._image_file_tmpl.format(index),
                    'height': height,
                    'width': width,
@@ -106,5 +106,5 @@ class PascalVOC(IMDB):
                                 int(float(bbox.find('ymax').text))]
             objects.append(obj_dict)
 
-            return height, width, objects
+        return height, width, objects
 

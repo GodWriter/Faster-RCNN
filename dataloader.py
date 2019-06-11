@@ -16,18 +16,19 @@ class Dataset(object):
 
     def get_voc(self):
         if not self.args.imageset:
-            self.args.imageset = '2012_trainval'
+            self.args.imageset = '2012_train'
         self.args.rcnn_num_classes = len(PascalVOC.classes)
 
         isets = self.args.imageset.split('+')
         roidb = []
         for iset in isets:
             # absorb source gt
-            imdb = PascalVOC(iset, 'data', 'data/VOCdevkit')
+            # imdb = PascalVOC(iset, 'data', 'data/VOCdevkit')
+            imdb = PascalVOC(iset, 'data', self.args.dataset)
             # delete useless dt
             imdb.filter_roidb()
             # data enlarge
-            imdb.append_flipped_images()
+            # imdb.append_flipped_images()
             roidb.extend(imdb.roidb)
         return roidb
 

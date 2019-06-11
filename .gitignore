@@ -1,1 +1,5 @@
 data
+boat_analysis.ipynb
+.ipynb_checkpoints
+.idea
+__pycache__

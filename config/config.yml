@@ -1,7 +1,8 @@
 ## Basic configuration
 retraining: False
 training: True # If the model is train, this argument should be true, else False
-imageset: 2012_trainval
+dataset: 'C:\\Users\\18917\\PycharmProjects\\Virtual word is coming\\VOCdevkit-262'
+imageset: 2007_test
 tfrecord_file: 'data/tf-record'
 tfrecord_num: 20000
 samples_per_file: 1000
